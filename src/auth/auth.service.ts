@@ -5,7 +5,10 @@ import { User } from 'user/user.model';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService, private jwtService: JwtService) {
+  constructor(
+    private readonly userService: UserService,
+    private jwtService: JwtService,
+  ) {
   }
 
   async validateUser(username: string, pass: string): Promise<any> {
@@ -27,5 +30,4 @@ export class AuthService {
       refresh_token: this.jwtService.sign(payload, { expiresIn: '7d' }),
     };
   }
-
 }

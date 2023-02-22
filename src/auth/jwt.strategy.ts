@@ -13,6 +13,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    return await this.userService.findOne("username",payload.username);
+    return await this.userService.findOne('username', payload.username);
   }
 }

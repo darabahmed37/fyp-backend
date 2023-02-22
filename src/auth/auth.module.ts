@@ -8,10 +8,14 @@ import { JwtStrategy } from './jwt.strategy';
 import { JWTAuthGuard } from './jwt-guard';
 
 @Module({
-  imports: [UserModule, JwtModule.register({
-    secret: 'secretKey',
-    signOptions: { expiresIn: '60m' },
-  }), PassportModule],
+  imports: [
+    UserModule,
+    JwtModule.register({
+      secret: 'secretKey',
+      signOptions: { expiresIn: '60m' },
+    }),
+    PassportModule,
+  ],
   providers: [AuthService, JwtStrategy, JWTAuthGuard],
   controllers: [],
   exports: [JWTAuthGuard],
