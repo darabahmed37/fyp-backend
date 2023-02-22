@@ -1,30 +1,27 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import config from 'config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from 'app.controller';
+import { AppService } from 'app.service';
 import { UserModule } from 'user/user.module';
+import { AuthModule } from 'auth/auth.module';
+import { JWTAuthGuard } from 'auth/jwt-guard';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      load: [config],
-    }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: config().DB_HOST,
-      port: config().DB_PORT,
-      username: config().DB_USER,
-      password: config().DB_PASSWORD,
-      database: config().DB_NAME,
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
-    UserModule,
-
-
-  ],
-  controllers: [],
-  providers: [],
+  imports: [UserModule, AuthModule, TypeOrmModule.forRoot({
+    type: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    password: 'darab',
+    username: 'darab',
+    database: 'fyp-backend-database',
+    autoLoadEntities: true,
+    synchronize: true,
+  })],
+  controllers: [AppController],
+  providers: [AppService, {
+    provide: 'APP_GUARD',
+    useClass: JWTAuthGuard,
+  }],
 })
 export class AppModule {
 }
