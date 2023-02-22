@@ -18,10 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     synchronize: true,
   })],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: 'APP_GUARD',
-    useClass: JWTAuthGuard,
-  }],
+  providers: [AppService, ],
 })
 export class AppModule {
 }
