@@ -20,7 +20,7 @@ export class AuthService {
     return null;
   }
 
-  private async login(user: User) {
+   async login(user: User) {
     let payload = {
       username: user.username,
       id: user.id,
