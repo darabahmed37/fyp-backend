@@ -11,7 +11,7 @@ export class UserService {
   }
 
   async create(username: string, password: string) {
-    let user =await this.findOne('username', username);
+    let user = await this.findOne('username', username);
     if (user) {
       throw new ConflictException('User already exists');
     }

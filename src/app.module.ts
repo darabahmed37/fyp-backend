@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from 'app.controller';
-import { AppService } from 'app.service';
 import { UserModule } from 'user/user.module';
 import { AuthModule } from 'auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -27,13 +25,13 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService, {
-    provide: 'APP_GUARD',
-    useClass: JWTAuthGuard,
-  }],
-
+  controllers: [],
+  providers: [
+    {
+      provide: 'APP_GUARD',
+      useClass: JWTAuthGuard,
+    },
+  ],
 })
 export class AppModule {
 }
-
