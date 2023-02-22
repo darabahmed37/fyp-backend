@@ -9,5 +9,5 @@ async function bootstrap() {
 }
 
 bootstrap().then(() => {
-  Logger.debug('Server started on port 3333');
+  Logger.log('Server started on port 3333');
 });
