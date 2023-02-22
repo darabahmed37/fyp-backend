@@ -5,6 +5,7 @@ import { UserModule } from 'user/user.module';
 import { AuthModule } from 'auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JWTAuthGuard } from 'auth/jwt-guard';
+import { CONFIGURATIONS } from 'custom/configurations';
 
 @Module({
   imports: [
@@ -12,11 +13,11 @@ import { JWTAuthGuard } from 'auth/jwt-guard';
     AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      password: 'darab',
-      username: 'darab',
-      database: 'fyp-backend-database',
+      host: CONFIGURATIONS.DB_HOST,
+      port: CONFIGURATIONS.DB_PORT,
+      password: CONFIGURATIONS.DB_PASSWORD,
+      username: CONFIGURATIONS.DB_USERNAME,
+      database: CONFIGURATIONS.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -30,3 +31,4 @@ import { JWTAuthGuard } from 'auth/jwt-guard';
 })
 export class AppModule {
 }
+
