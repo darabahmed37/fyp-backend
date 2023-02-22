@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from 'user/user.model';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,8 +11,13 @@ export class UserService {
   }
 
   async create(username: string, password: string) {
+    let user =await this.findOne('username', username);
+    if (user) {
+      throw new ConflictException('User already exists');
+    }
     let newUser = this.userRepository.create({ username, password });
     await this.userRepository.save(newUser);
+    return newUser;
   }
 
   async findOne(key: string, value: string): Promise<User | undefined> {
