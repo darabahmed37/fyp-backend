@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'user/user.service';
 import { User } from 'user/user.model';
@@ -8,8 +8,7 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private jwtService: JwtService,
-  ) {
-  }
+  ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.findOne('username', username);
@@ -31,8 +30,7 @@ export class AuthService {
     };
   }
 
-
-  async refreshToken(refreshToken: string)  {
+  async refreshToken(refreshToken: string) {
     const payload = this.jwtService.verify(refreshToken);
 
     const expired = payload.exp * 1000;
@@ -47,6 +45,4 @@ export class AuthService {
 
     return this.login(user);
   }
-
-
 }

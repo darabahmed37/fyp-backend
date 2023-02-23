@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
@@ -12,6 +17,7 @@ export class JWTAuthGuard extends AuthGuard('jwt') implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
+    Logger.debug(context.switchToHttp().getRequest().originalUrl);
     const isPublic = this.reflector.getAllAndOverride<boolean>('isPublic', [
       context.getClass(),
       context.getHandler(),

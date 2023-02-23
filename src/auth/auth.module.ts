@@ -15,12 +15,12 @@ import { AuthController } from './auth.controller';
       useFactory: () => ({
         secret: process.env.JWT_SECRET,
         signOptions: { expiresIn: '1h' },
-      })}),
+      }),
+    }),
     PassportModule,
   ],
   providers: [AuthService, JwtStrategy, JWTAuthGuard],
   controllers: [AuthController],
   exports: [JWTAuthGuard],
 })
-export class AuthModule {
-}
+export class AuthModule {}

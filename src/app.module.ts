@@ -36,5 +36,4 @@ import * as process from 'process';
     },
   ],
 })
-export class AppModule {
-}
+export class AppModule {}
