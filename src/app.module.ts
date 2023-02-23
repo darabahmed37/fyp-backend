@@ -3,15 +3,15 @@ import { UserModule } from 'user/user.module';
 import { AuthModule } from 'auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JWTAuthGuard } from 'auth/jwt-guard';
-import { databaseConfig, JWT_KEY } from 'utils/configurations';
+import { databaseConfig } from 'utils/configurations';
 import { ConfigModule } from '@nestjs/config';
-import * as process from 'process';
+import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [databaseConfig, JWT_KEY],
+      load: [databaseConfig],
     }),
     UserModule,
     AuthModule,
@@ -27,6 +27,7 @@ import * as process from 'process';
         synchronize: true,
       }),
     }),
+    TestModule,
   ],
   controllers: [],
   providers: [

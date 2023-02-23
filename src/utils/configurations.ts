@@ -5,6 +5,4 @@ export const databaseConfig = () => ({
   DB_USERNAME: process.env.DB_USERNAME,
   DB_PASSWORD: process.env.DB_PASSWORD,
 });
-export const JWT_KEY = () => ({
-  KEY: process.env.JWT_SECRET,
-});
+
