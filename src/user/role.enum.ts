@@ -1,0 +1,5 @@
+export enum Roles {
+  ADMIN = 'ADMIN',
+  DRIVER = 'DRIVER',
+  SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+}

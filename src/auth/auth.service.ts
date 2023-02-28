@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'user/user.service';
 import { User } from 'user/user.model';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +13,12 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.findOne('username', username);
+    let salt = user.password.split('$')[0];
+    let hash = crypto
+      .pbkdf2Sync(pass, salt, 1000, 64, 'sha512')
+      .toString('hex');
+    pass = salt + '$' + hash;
+
     if (user && user.password === pass) {
       const { password, ...result } = user;
       return result;

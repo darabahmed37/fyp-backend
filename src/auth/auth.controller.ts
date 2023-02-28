@@ -8,7 +8,6 @@ import {
 import { AuthService } from 'auth/auth.service';
 import { Public } from 'utils/custom.decorator';
 import { UserService } from 'user/user.service';
-import { request } from 'express';
 
 @Controller('auth')
 @Public()

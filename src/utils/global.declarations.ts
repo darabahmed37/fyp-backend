@@ -1,7 +1,6 @@
 import { User } from 'user/user.model';
 
-declare module 'express'
-{
+declare module 'express' {
   interface Request {
     user: User;
   }
