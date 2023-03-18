@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common';
+import {ConflictException, Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Comments} from 'comments/comments.model';
 import {Repository} from 'typeorm';
@@ -27,6 +27,10 @@ export class CommentsService {
         from: number,
         to: number,
     ): Promise<Comments> {
+
+        if (from == to) {
+            throw new ConflictException("You can't comment on yourself")
+        }
         let temp = this.commentsRepository.create({
             comment: comment,
             from: {

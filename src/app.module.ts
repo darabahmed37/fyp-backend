@@ -5,7 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JWTAuthGuard } from 'auth/jwt-guard';
 import { databaseConfig } from 'utils/configurations';
 import { ConfigModule } from '@nestjs/config';
-import { CommentsModule } from './comments/comments.module';
+import { CommentsModule } from 'comments/comments.module';
+import { RatingModule } from './rating/rating.module';
 
 @Module({
   imports: [
@@ -16,9 +17,10 @@ import { CommentsModule } from './comments/comments.module';
     UserModule,
     AuthModule,
     TypeOrmModule.forRootAsync({
-      useFactory: () => (databaseConfig()),
+      useFactory: () => databaseConfig(),
     }),
     CommentsModule,
+    RatingModule,
   ],
   controllers: [],
   providers: [
