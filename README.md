@@ -1,6 +1,6 @@
 ## Set these ENV variables in your .env file
 
->DB_NAME DB_USERNAME  DB_PASSWORD  DB_HOST  DB_PORT  JWT_SECRET
+>DB_NAME DB_USERNAME  DB_PASSWORD  DB_HOST  DB_PORT  JWT_SECRET DB_NAME
 
 Set these ENV variables in your .env file 
 DB_NAME is the name of the database you want to use
@@ -14,3 +14,5 @@ DB_HOST is the host of the database you want to use
 DB_PORT is the port of the database you want to use
 
 JWT_SECRET is the secret key for JWT
+
+DB_NAME is the name of the database you want to use

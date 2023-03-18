@@ -1,7 +1,14 @@
-export const databaseConfig = () => ({
-  DB_NAME: process.env.DB_NAME,
-  DB_HOST: process.env.DB_HOST,
-  DB_PORT: parseInt(process.env.DB_PORT),
-  DB_USERNAME: process.env.DB_USERNAME,
-  DB_PASSWORD: process.env.DB_PASSWORD,
-});
+import {TypeOrmModuleOptions} from "@nestjs/typeorm";
+
+export function databaseConfig():TypeOrmModuleOptions {
+    return {
+        type: 'postgres',
+        host: process.env.DB_HOST,
+        port: parseInt(process.env.DB_PORT),
+        password: process.env.DB_PASSWORD,
+        username: process.env.DB_USERNAME,
+        database: process.env.DB_NAME,
+        autoLoadEntities: true,
+        synchronize: true,
+    }
+};

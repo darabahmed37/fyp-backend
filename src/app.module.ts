@@ -15,16 +15,7 @@ import { ConfigModule } from '@nestjs/config';
     UserModule,
     AuthModule,
     TypeOrmModule.forRootAsync({
-      useFactory: () => ({
-        type: 'postgres',
-        host: process.env.DB_HOST,
-        port: parseInt(process.env.DB_PORT),
-        password: process.env.DB_PASSWORD,
-        username: process.env.DB_USERNAME,
-        database: process.env.DB_NAME,
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
+      useFactory: () => (databaseConfig()),
     }),
   ],
   controllers: [],
