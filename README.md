@@ -17,5 +17,3 @@ JWT_SECRET is the secret key for JWT
 
 DB_NAME is the name of the database you want to use
 
-f
-

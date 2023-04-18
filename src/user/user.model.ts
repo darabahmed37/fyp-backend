@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Roles } from 'user/role.enum';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { Roles } from 'user/role.model';
 
 @Entity()
 export class User {
@@ -15,10 +15,8 @@ export class User {
   latitude: string;
   @Column({ default: '0' })
   longitude: string;
-  @Column({
-    type: 'enum',
-    enum: Roles,
-    default: Roles.DRIVER,
+  @ManyToOne(() => Roles, (role) => role.id, {
+    onDelete: 'CASCADE',
   })
   role: Roles;
 }
