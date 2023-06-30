@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import { Roles } from 'user/role.model';
+import { Roles } from 'role/role.model';
 
 @Entity()
 export class User {
