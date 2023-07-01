@@ -31,7 +31,11 @@ export class AuthController {
 
   @Post('signup')
   async signUp(@Body() body) {
-    let user = await this.userService.create(body.username, body.password);
+    let user = await this.userService.create(
+      body.username,
+      body.password,
+      ...body,
+    );
     return this.authService.login(user);
   }
 

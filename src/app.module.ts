@@ -7,7 +7,7 @@ import { databaseConfig } from 'utils/configurations';
 import { ConfigModule } from '@nestjs/config';
 import { CommentsModule } from 'comments/comments.module';
 import { RatingModule } from 'rating/rating.module';
-import { RoleModule } from './role/role.module';
+import { RoleModule } from 'role/role.module';
 
 @Module({
   imports: [

@@ -6,9 +6,9 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
-  await app.listen(3333);
+  await app.listen(8000);
 }
 
 bootstrap().then(() => {
-  Logger.log('Server started on port 3333');
+  Logger.log('Server started on port 8000');
 });

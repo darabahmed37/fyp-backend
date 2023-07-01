@@ -38,7 +38,12 @@ export class AuthService {
   }
 
   async refreshToken(refreshToken: string) {
-    const payload = this.jwtService.verify(refreshToken);
+    let payload = undefined;
+    try {
+      payload = this.jwtService.verify(refreshToken);
+    } catch (e) {
+      return 'token_not_valid';
+    }
 
     const expired = payload.exp * 1000;
     if (Date.now() >= expired) {
@@ -50,6 +55,6 @@ export class AuthService {
       throw new Error('User not found');
     }
 
-    return this.login(user);
+    return (await this.login(user)).access_token;
   }
 }

@@ -1,9 +1,7 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+enum Role {
+  DRIVER = 'DRIVER',
 
-@Entity()
-export class Roles {
-    @PrimaryGeneratedColumn()
-    id: number;
-    @Column()
-    Role: string;
+  CUSTOMER = 'CUSTOMER',
 }
+
+export default Role;
