@@ -17,7 +17,9 @@ export class UserController {
     @Public()
     @Get("checkUsername")
     async checkUserName(@Query() queryParams: { username: string }) {
-        return await this.userService.findOne("username", queryParams.username)
+        let user = await this.userService.findOne("username", queryParams.username)
+
+        return !user
     }
 
 
