@@ -23,4 +23,13 @@ export class AuthController {
       throw new HttpException(e.message, HttpStatus.NOT_ACCEPTABLE);
     }
   }
+
+  @Post('signup')
+  async signUp(@Body() body: any) {
+    console.log("Hello")
+    await this.authService.create(body);
+    return {
+      "message":"CreateDateColumn"
+    }
+  }
 }

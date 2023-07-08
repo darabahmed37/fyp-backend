@@ -10,7 +10,8 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  async create(username: string, password: string, ...information) {
+  async create(userParm: User) {
+    let { username, password } = userParm;
     let user = await this.findOne('username', username);
     if (user) {
       throw new ConflictException('User already exists');
@@ -27,10 +28,11 @@ export class UserService {
     password = salt + '$' + hash;
 
     let newUser = this.userRepository.create({
+      ...userParm,
       username,
       password,
-      ...information,
     });
+
     await this.userRepository.save(newUser);
     return newUser;
   }
