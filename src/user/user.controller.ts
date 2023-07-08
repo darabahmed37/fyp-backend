@@ -1,10 +1,24 @@
-import { Controller, Get, Req } from '@nestjs/common';
-import { Request } from 'express';
+import {Controller, Get, Query, Req} from '@nestjs/common';
+import {Request} from 'express';
+import {UserService} from "user/user.service";
+import {Public} from "utils/custom.decorator";
 
 @Controller('user')
 export class UserController {
-  @Get('profile')
-  async getProfile(@Req() req: Request) {
-    return req.user;
-  }
+
+    constructor(private userService: UserService) {
+    }
+
+    @Get('profile')
+    async getProfile(@Req() req: Request) {
+        return req.user;
+    }
+
+    @Public()
+    @Get("checkUsername")
+    async checkUserName(@Query() queryParams: { username: string }) {
+        return await this.userService.findOne("username", queryParams.username)
+    }
+
+
 }

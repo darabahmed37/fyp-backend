@@ -35,7 +35,7 @@ export class UserService {
     return newUser;
   }
 
-  async findOne(key: string, value: string): Promise<User | undefined> {
+  async findOne(key: string, value: string): Promise<User | null> {
     return await this.userRepository.findOne({
       where: { [key]: value },
     });
