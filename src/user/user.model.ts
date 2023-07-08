@@ -9,6 +9,9 @@ export class User {
   @Column()
   username: string;
   @Column()
+  name: string;
+
+  @Column()
   @Exclude()
   password: string;
   @Column({ default: '0' })
@@ -21,4 +24,10 @@ export class User {
     default: Role.CUSTOMER,
   })
   role: Role;
+  @Column({
+    type: 'date',
+  })
+  dob: Date;
+  @Column()
+  phoneNumber: string;
 }

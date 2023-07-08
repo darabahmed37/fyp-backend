@@ -57,4 +57,8 @@ export class AuthService {
 
     return (await this.login(user)).access_token;
   }
+
+  async create(user: User) {
+    await this.userService.create(user.username, user.password, { ...user });
+  }
 }
