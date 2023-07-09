@@ -20,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     console.log(payload)
     let user = await this.userService.findOne('id', payload.id);
     if (!user) {
-      throw new NotAcceptableException('Invalid token');
+      throw new NotAcceptableException('Invalid Token');
     }
     return user;
   }
