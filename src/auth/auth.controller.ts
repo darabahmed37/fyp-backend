@@ -1,7 +1,7 @@
 import {
   Body,
   Controller,
-  HttpException,
+  HttpException,UnauthorizedException,
   HttpStatus,
   Inject,
   Post,
@@ -26,10 +26,19 @@ export class AuthController {
 
   @Post('signup')
   async signUp(@Body() body: any) {
-    console.log("Hello")
     await this.authService.create(body);
     return {
-      "message":"CreateDateColumn"
-    }
+      message: 'Created',
+    };
   }
-}
+
+  @Post('signin')
+  async signIn(@Body() body: any) {
+    let user = await this.authService.validateUser(
+        body.username,
+        body.password,
+    );
+    if (user) {
+      return await this.authService.login(user);
+    } else throw new UnauthorizedException("Invalid Cred")
+  }}
