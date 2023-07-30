@@ -13,6 +13,7 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.findOne('username', username);
+    if (!user) return null;
     let salt = user.password.split('$')[0];
     let hash = crypto
       .pbkdf2Sync(pass, salt, 1000, 64, 'sha512')

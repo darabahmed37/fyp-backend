@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CommentsModule } from 'comments/comments.module';
 import { RatingModule } from 'rating/rating.module';
 import { RoleModule } from 'role/role.module';
+import { FeaturesModule } from 'features/features.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RoleModule } from 'role/role.module';
     CommentsModule,
     RatingModule,
     RoleModule,
+    FeaturesModule,
   ],
   controllers: [],
   providers: [
