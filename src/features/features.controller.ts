@@ -15,6 +15,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import { Response } from 'express';
+import {Public} from "utils/custom.decorator";
 
 @Controller('services')
 export class FeaturesController {
@@ -51,6 +52,7 @@ export class FeaturesController {
     return this.featureService.getAllServices();
   }
 
+  @Public()
   @Get(':image')
   getImage(@Param('image') image: string, @Res() response: Response) {
     const filePath = join(__dirname, '..','..', 'uploads', image);
