@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import Role from 'role/role.model';
+import {FeaturesService} from "features/features.service";
+import {Features} from "features/features.model";
 
 @Entity()
 export class User {
@@ -30,4 +32,8 @@ export class User {
   dob: Date;
   @Column()
   phoneNumber: string;
+
+  @ManyToMany(()=>Features, feature=>feature.user)
+  @JoinTable()
+  services:FeaturesService[]
 }

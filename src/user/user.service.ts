@@ -42,4 +42,13 @@ export class UserService {
       where: { [key]: value },
     });
   }
+
+  async getUserServices(userId: number) {
+    const user = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    return user.services;
+  }
 }

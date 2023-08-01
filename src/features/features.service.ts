@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FeaturesModel } from 'features/features.model';
+import { Features } from 'features/features.model';
 import { Repository } from 'typeorm';
 import { CreateServiceDTO } from 'features/dto';
 
 @Injectable()
 export class FeaturesService {
   constructor(
-    @InjectRepository(FeaturesModel)
-    private featureModel: Repository<FeaturesModel>,
+    @InjectRepository(Features)
+    private featureModel: Repository<Features>,
   ) {}
 
   createService(obj: CreateServiceDTO) {
@@ -17,6 +17,7 @@ export class FeaturesService {
   }
 
   getAllServices() {
+
     return this.featureModel.find();
   }
 }
