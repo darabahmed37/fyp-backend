@@ -1,6 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from 'user/user.model';
+import { User } from './user.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as crypto from 'crypto';
 

@@ -1,6 +1,6 @@
 import { Controller, Get, Query, Req } from '@nestjs/common';
 import { Request } from 'express';
-import { UserService } from 'user/user.service';
+import { UserService } from './user.service';
 import { Public } from 'utils/custom.decorator';
 
 @Controller('user')
