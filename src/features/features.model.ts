@@ -1,5 +1,6 @@
 import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {User} from "user/user.model";
+import {Driver} from "driver/driver.model";
 
 @Entity()
 export class Features {
@@ -11,6 +12,6 @@ export class Features {
   title: string;
   @Column()
   description: string;
-  @ManyToMany(()=>User,user=>user.services)
+  @ManyToMany(()=>Driver, driver=>driver.services)
   user:User[]
 }

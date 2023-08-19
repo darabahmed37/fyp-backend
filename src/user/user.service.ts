@@ -49,6 +49,6 @@ export class UserService {
         id: userId,
       },
     });
-    return user.services;
+    return [];
   }
 }

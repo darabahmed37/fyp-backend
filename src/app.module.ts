@@ -9,6 +9,7 @@ import { CommentsModule } from 'comments/comments.module';
 import { RatingModule } from 'rating/rating.module';
 import { RoleModule } from 'role/role.module';
 import { FeaturesModule } from 'features/features.module';
+import { DriverModule } from './driver/driver.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { FeaturesModule } from 'features/features.module';
     RatingModule,
     RoleModule,
     FeaturesModule,
+    DriverModule,
   ],
   controllers: [],
   providers: [

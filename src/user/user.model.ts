@@ -33,7 +33,5 @@ export class User {
   @Column()
   phoneNumber: string;
 
-  @ManyToMany(()=>Features, feature=>feature.user)
-  @JoinTable()
-  services:FeaturesService[]
+
 }
