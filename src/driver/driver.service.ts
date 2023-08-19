@@ -18,12 +18,16 @@ export class DriverService {
         })
     }
 
-     saveServices(services: Features[], user: User) {
+    async saveServices(services: Features[], user: User) {
+        const driver = await this.driverRepo.findOne({
+            where: {
+                user
+            },
+            relations:["user","services"]
 
-        return  this.driverRepo.update({
-            user: user
-        }, {
-            services: services
         })
+        driver.services = services
+        await this.driverRepo.save(driver)
+        return driver
     }
 }

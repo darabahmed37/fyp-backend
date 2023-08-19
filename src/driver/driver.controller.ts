@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Req} from '@nestjs/common';
+import {Body, Controller, Get, Post, Req} from '@nestjs/common';
 import {DriverService} from "driver/driver.service";
 import {Request} from "express";
 import {Features} from "features/features.model";
@@ -16,7 +16,7 @@ export class DriverController {
 
     @Post("save-services")
     async saveServices(@Req() request: Request,
-                       features: Features[]) {
+                     @Body()  features: Features[]) {
         return this.driverService.saveServices(features, request.user)
     }
 
