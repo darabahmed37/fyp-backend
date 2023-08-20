@@ -10,12 +10,13 @@ export class DriverService {
     constructor(@InjectRepository(User) private userRepo: Repository<User>, @InjectRepository(Driver) private driverRepo: Repository<Driver>) {
     }
 
-    getAllServices(user: User) {
-        return this.driverRepo.find({
+ async   getAllServices(user: User) {
+        const driver=await this.driverRepo.findOne({
             where: {
                 user: user
-            }
+            },relations:["services"]
         })
+    return driver.services
     }
 
     async saveServices(services: Features[], user: User) {
@@ -30,4 +31,8 @@ export class DriverService {
         await this.driverRepo.save(driver)
         return driver
     }
+
+
+
+
 }

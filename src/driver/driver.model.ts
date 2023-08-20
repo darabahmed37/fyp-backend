@@ -11,7 +11,7 @@ export class Driver {
     )
     @JoinColumn()
     user: User
-    @ManyToMany(() => Features, feature => feature.user)
+    @ManyToMany(() => Features, feature => feature.drivers)
     @JoinTable()
     services: Features[]
 }

@@ -13,5 +13,5 @@ export class Features {
   @Column()
   description: string;
   @ManyToMany(()=>Driver, driver=>driver.services)
-  user:User[]
+  drivers:Driver[]
 }

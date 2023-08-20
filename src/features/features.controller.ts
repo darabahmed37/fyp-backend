@@ -53,6 +53,11 @@ export class FeaturesController {
 
     return data;
   }
+  @Get("/driver/:id")
+  async getDriversByServiceId(@Param("id")id:number) {
+    return this.featureService.getMechanicsByServicesId(id);
+
+  }
 
   @Public()
   @Get(':image')
@@ -60,4 +65,10 @@ export class FeaturesController {
     const filePath = join(__dirname, '..', '..', 'uploads', image);
     return response.sendFile(filePath);
   }
+
+
+
 }
+
+
+
