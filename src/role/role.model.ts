@@ -1,5 +1,5 @@
 enum Role {
-  DRIVER = 'DRIVER',
+  MECHANIC = 'MECHANIC',
 
   CUSTOMER = 'CUSTOMER',
 }

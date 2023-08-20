@@ -53,7 +53,7 @@ export class FeaturesController {
 
     return data;
   }
-  @Get("/driver/:id")
+  @Get("/mechanic/:id")
   async getDriversByServiceId(@Param("id")id:number) {
     return this.featureService.getMechanicsByServicesId(id);
 

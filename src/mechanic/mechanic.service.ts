@@ -2,12 +2,12 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "user/user.model";
 import {Repository} from "typeorm";
-import {Driver} from "driver/driver.model";
+import {Mechanic} from "mechanic/mechanic.model";
 import {Features} from "features/features.model";
 
 @Injectable()
-export class DriverService {
-    constructor(@InjectRepository(User) private userRepo: Repository<User>, @InjectRepository(Driver) private driverRepo: Repository<Driver>) {
+export class MechanicService {
+    constructor(@InjectRepository(User) private userRepo: Repository<User>, @InjectRepository(Mechanic) private driverRepo: Repository<Mechanic>) {
     }
 
  async   getAllServices(user: User) {

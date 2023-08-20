@@ -28,7 +28,7 @@ export class FeaturesService {
             where: {
                 id
             },
-            relations: ["drivers.user"],
+            relations: ["mechanics.user","mechanics.rating"],
             loadEagerRelations: true,
             relationLoadStrategy:"join",
 
@@ -36,6 +36,6 @@ export class FeaturesService {
 
         })
 
-        return feature.drivers.map(driver => driver.user)
+        return feature.mechanics
     }
 }

@@ -5,7 +5,7 @@ import {User} from 'user/user.model';
 import * as crypto from 'crypto';
 import Role from "role/role.model";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Driver} from "driver/driver.model";
+import {Mechanic} from "mechanic/mechanic.model";
 import {Repository} from "typeorm";
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AuthService {
     constructor(
         private readonly userService: UserService,
         private jwtService: JwtService,
-        @InjectRepository(Driver) private driverRepo: Repository<Driver>
+        @InjectRepository(Mechanic) private driverRepo: Repository<Mechanic>
     ) {
     }
 
@@ -67,12 +67,12 @@ export class AuthService {
 
     async create(user: User) {
         let newUser = await this.userService.create(user);
-        if (newUser.role == Role.DRIVER) {
-           let driver= this.driverRepo.create({
+        if (newUser.role == Role.MECHANIC) {
+           let mechanic= this.driverRepo.create({
                 user: newUser,
                 services: []
             })
-           await this.driverRepo.save(driver)
+           await this.driverRepo.save(mechanic)
         }
     }
 }

@@ -1,12 +1,12 @@
 import {Body, Controller, Get, Post, Req} from '@nestjs/common';
-import {DriverService} from "driver/driver.service";
+import {MechanicService} from "mechanic/mechanic.service";
 import {Request} from "express";
 import {Features} from "features/features.model";
 import {User} from "user/user.model";
 
-@Controller('driver')
-export class DriverController {
-    constructor(private driverService: DriverService) {
+@Controller('mechanic')
+export class MechanicController {
+    constructor(private driverService: MechanicService) {
     }
 
     @Get("services")

@@ -9,7 +9,7 @@ import { JWTAuthGuard } from './jwt-guard';
 import { AuthController } from './auth.controller';
 import {UserService} from "user/user.service";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {Driver} from "driver/driver.model";
+import {Mechanic} from "mechanic/mechanic.model";
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import {Driver} from "driver/driver.model";
       }),
     }),
     PassportModule,
-      TypeOrmModule.forFeature([Driver])
+      TypeOrmModule.forFeature([Mechanic])
   ],
   providers: [AuthService,JwtStrategy, JWTAuthGuard],
   controllers: [AuthController],

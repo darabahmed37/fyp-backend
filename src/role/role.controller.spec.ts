@@ -21,7 +21,7 @@ describe('RoleService', () => {
   describe('getAllRole', () => {
     it('should return an array of all role values', () => {
       const result = roleService.getAllRole();
-      expect(result).toEqual([Role.DRIVER, Role.CUSTOMER]);
+      expect(result).toEqual([Role.MECHANIC, Role.CUSTOMER]);
     });
   });
 });

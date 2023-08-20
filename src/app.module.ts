@@ -9,7 +9,7 @@ import { CommentsModule } from 'comments/comments.module';
 import { RatingModule } from 'rating/rating.module';
 import { RoleModule } from 'role/role.module';
 import { FeaturesModule } from 'features/features.module';
-import { DriverModule } from './driver/driver.module';
+import { MechanicModule } from 'mechanic/mechanic.module';
 
 @Module({
   imports: [
@@ -26,7 +26,7 @@ import { DriverModule } from './driver/driver.module';
     RatingModule,
     RoleModule,
     FeaturesModule,
-    DriverModule,
+    MechanicModule,
   ],
   controllers: [],
   providers: [
