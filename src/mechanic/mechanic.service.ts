@@ -7,11 +7,11 @@ import {Features} from "features/features.model";
 
 @Injectable()
 export class MechanicService {
-    constructor(@InjectRepository(User) private userRepo: Repository<User>, @InjectRepository(Mechanic) private driverRepo: Repository<Mechanic>) {
+    constructor(@InjectRepository(User) private userRepo: Repository<User>, @InjectRepository(Mechanic) private mechanicRepository: Repository<Mechanic>) {
     }
 
     async getAllServices(user: User) {
-        const mechanic = await this.driverRepo.findOne({
+        const mechanic = await this.mechanicRepository.findOne({
             where: {
                 user: user
             }, relations: ["services"]
@@ -20,7 +20,7 @@ export class MechanicService {
     }
 
     async saveServices(services: Features[], user: User) {
-        const driver = await this.driverRepo.findOne({
+        const driver = await this.mechanicRepository.findOne({
             where: {
                 user
             },
@@ -28,18 +28,29 @@ export class MechanicService {
 
         })
         driver.services = services
-        await this.driverRepo.save(driver)
+        await this.mechanicRepository.save(driver)
         return driver
     }
 
-    async getMechanic(id:number) {
-        return await this.driverRepo.findOne({
+    async getMechanic(id: number) {
+        return await this.mechanicRepository.findOne({
             where: {
                 id
             },
-            relations: ["user", "services","rating"]
+            relations: ["user", "services", "rating"]
 
         })
+    }
+
+
+    async addAbout(user: User, about: string) {
+        const mechanic = await this.mechanicRepository.findOne({
+            where: {
+                user
+            }
+        })
+        mechanic.about = about
+      return   await this.mechanicRepository.save(mechanic)
     }
 
 

@@ -21,8 +21,13 @@ export class MechanicController {
     }
 
     @Get(":id")
-    getMechanic(@Param("id") id:string) {
+    getMechanic(@Param("id") id: string) {
         return this.mechanicService.getMechanic(parseInt(id))
+    }
+
+    @Post("add-about")
+    addAbout(@Body("about") about: string, @Req() request: Request) {
+        return this.mechanicService.addAbout(request.user, about)
     }
 
 }
