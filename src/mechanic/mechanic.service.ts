@@ -10,13 +10,13 @@ export class MechanicService {
     constructor(@InjectRepository(User) private userRepo: Repository<User>, @InjectRepository(Mechanic) private driverRepo: Repository<Mechanic>) {
     }
 
- async   getAllServices(user: User) {
-        const driver=await this.driverRepo.findOne({
+    async getAllServices(user: User) {
+        const mechanic = await this.driverRepo.findOne({
             where: {
                 user: user
-            },relations:["services"]
+            }, relations: ["services"]
         })
-    return driver.services
+        return mechanic.services
     }
 
     async saveServices(services: Features[], user: User) {
@@ -24,7 +24,7 @@ export class MechanicService {
             where: {
                 user
             },
-            relations:["user","services"]
+            relations: ["user", "services"]
 
         })
         driver.services = services
@@ -32,7 +32,16 @@ export class MechanicService {
         return driver
     }
 
+    async getMechanic(id:number) {
+        return await this.driverRepo.findOne({
+            where: {
+                id
+            },
+            relations: ["user", "services"]
 
+        })
+    }
 
 
 }
+
