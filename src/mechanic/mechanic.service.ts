@@ -37,7 +37,7 @@ export class MechanicService {
             where: {
                 id
             },
-            relations: ["user", "services"]
+            relations: ["user", "services","rating"]
 
         })
     }
