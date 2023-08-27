@@ -75,4 +75,7 @@ export class AuthService {
            await this.driverRepo.save(mechanic)
         }
     }
+      updatePassword(username:string,password:string){
+        return this.userService.updatePassword(username,password)
+     }
 }

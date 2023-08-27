@@ -9,6 +9,6 @@ export function databaseConfig(): TypeOrmModuleOptions {
     username: process.env.DB_USERNAME,
     database: process.env.DB_NAME,
     autoLoadEntities: true,
-    synchronize: true,
+    synchronize: false,
   };
 }
