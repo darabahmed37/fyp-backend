@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Req} from '@nestjs/common';
 import { RatingService } from 'rating/rating.service';
 import { Rating } from 'rating/rating.model';
+import {Request} from "express";
 
 @Controller('rating')
 export class RatingController {
@@ -14,9 +15,9 @@ export class RatingController {
   @Post()
   async addRating(
     @Body('stars') stars: number,
-    @Body('from') from: number,
     @Body('to') to: number,
+    @Req() request:Request
   ): Promise<Rating> {
-    return await this.ratingService.create(stars, from, to);
+    return await this.ratingService.create(stars, request.user, to);
   }
 }
