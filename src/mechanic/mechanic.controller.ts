@@ -22,6 +22,7 @@ export class MechanicController {
 
     @Get(":id")
     getMechanic(@Param("id") id: string) {
+
         return this.mechanicService.getMechanic(parseInt(id))
     }
 

@@ -33,13 +33,16 @@ export class MechanicService {
     }
 
     async getMechanic(id: number) {
-        return await this.mechanicRepository.findOne({
+        let data = await this.mechanicRepository.findOne({
             where: {
-                id
+                user: {
+                    id
+                }
             },
             relations: ["user", "services", "rating"]
 
         })
+        return data
     }
 
 
@@ -50,7 +53,7 @@ export class MechanicService {
             }
         })
         mechanic.about = about
-      return   await this.mechanicRepository.save(mechanic)
+        return await this.mechanicRepository.save(mechanic)
     }
 
 
