@@ -43,25 +43,36 @@ describe('CommentsController', () => {
 
     it('should throw a ConflictException for self-comment', async () => {
       // Arrange
-      mockCommentsService.addComment.mockRejectedValue(new ConflictException("You can't comment on yourself"));
+      mockCommentsService.addComment.mockRejectedValue(
+        new ConflictException("You can't comment on yourself"),
+      );
 
       // Act and Assert
-      await expect(commentsController.createComment()).rejects.toThrowError(ConflictException);
+      await expect(commentsController.createComment()).rejects.toThrowError(
+        ConflictException,
+      );
     });
   });
 
   describe('getComments', () => {
     it('should return an array of comments for a service user', async () => {
       // Arrange
-      const mockComments = [{ id: 1, comment: 'Test comment 1' }, { id: 2, comment: 'Test comment 2' }];
-      mockCommentsService.getCommentsByServiceUser.mockResolvedValue(mockComments);
+      const mockComments = [
+        { id: 1, comment: 'Test comment 1' },
+        { id: 2, comment: 'Test comment 2' },
+      ];
+      mockCommentsService.getCommentsByServiceUser.mockResolvedValue(
+        mockComments,
+      );
 
       // Act
       const result = await commentsController.getComments();
 
       // Assert
       expect(result).toEqual(mockComments);
-      expect(mockCommentsService.getCommentsByServiceUser).toHaveBeenCalledWith(1);
+      expect(mockCommentsService.getCommentsByServiceUser).toHaveBeenCalledWith(
+        1,
+      );
     });
   });
 });

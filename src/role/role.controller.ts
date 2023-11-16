@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { RoleService } from 'role/role.service';
-import {Public} from "utils/custom.decorator";
+import { Public } from 'utils/custom.decorator';
 
 @Controller('role')
 export class RoleController {

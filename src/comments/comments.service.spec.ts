@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Comments } from './comments.model';
 import { ConflictException } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import {User} from "user/user.model";
+import { User } from 'user/user.model';
 
 describe('CommentsService', () => {
   let commentsService: CommentsService;
@@ -28,7 +28,9 @@ describe('CommentsService', () => {
     }).compile();
 
     commentsService = module.get<CommentsService>(CommentsService);
-    commentsRepository = module.get<Repository<Comments>>(getRepositoryToken(Comments));
+    commentsRepository = module.get<Repository<Comments>>(
+      getRepositoryToken(Comments),
+    );
   });
 
   describe('getCommentsByServiceUser', () => {
@@ -65,7 +67,11 @@ describe('CommentsService', () => {
       mockCommentsRepository.save.mockResolvedValue(mockComment);
 
       // Act
-      const result = await commentsService.addComment(comment, fromUserId, toUserId);
+      const result = await commentsService.addComment(
+        comment,
+        fromUserId,
+        toUserId,
+      );
 
       // Assert
       expect(result).toEqual(mockComment);
@@ -87,7 +93,9 @@ describe('CommentsService', () => {
       const userId = 1;
 
       // Act and Assert
-      await expect(commentsService.addComment(comment, userId, userId)).rejects.toThrowError(ConflictException);
+      await expect(
+        commentsService.addComment(comment, userId, userId),
+      ).rejects.toThrowError(ConflictException);
     });
   });
 });

@@ -1,5 +1,5 @@
-export class CreateServiceDTO{
-    title:string
-    description:string
-    image?:string
+export class CreateServiceDTO {
+  title: string;
+  description: string;
+  image?: string;
 }

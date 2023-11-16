@@ -59,8 +59,17 @@ describe('AuthService', () => {
 
       // Assert
       expect(result).toEqual(mockUser);
-      expect(mockUserService.findOne).toHaveBeenCalledWith('username', username);
-      expect(cryptoSpy).toHaveBeenCalledWith(password, salt, 1000, 64, 'sha512');
+      expect(mockUserService.findOne).toHaveBeenCalledWith(
+        'username',
+        username,
+      );
+      expect(cryptoSpy).toHaveBeenCalledWith(
+        password,
+        salt,
+        1000,
+        64,
+        'sha512',
+      );
     });
 
     it('should return null if user is not found', async () => {
@@ -75,7 +84,10 @@ describe('AuthService', () => {
 
       // Assert
       expect(result).toBeNull();
-      expect(mockUserService.findOne).toHaveBeenCalledWith('username', username);
+      expect(mockUserService.findOne).toHaveBeenCalledWith(
+        'username',
+        username,
+      );
     });
 
     it('should return null if password validation fails', async () => {
@@ -96,8 +108,17 @@ describe('AuthService', () => {
 
       // Assert
       expect(result).toBeNull();
-      expect(mockUserService.findOne).toHaveBeenCalledWith('username', username);
-      expect(cryptoSpy).toHaveBeenCalledWith(password, salt, 1000, 64, 'sha512');
+      expect(mockUserService.findOne).toHaveBeenCalledWith(
+        'username',
+        username,
+      );
+      expect(cryptoSpy).toHaveBeenCalledWith(
+        password,
+        salt,
+        1000,
+        64,
+        'sha512',
+      );
     });
   });
 
@@ -117,8 +138,14 @@ describe('AuthService', () => {
       const result = authService.login(mockUser);
 
       // Assert
-      expect(result).toEqual({ access_token: mockAccessToken, refresh_token: mockRefreshToken });
-      expect(mockJwtService.sign).toHaveBeenCalledWith({ username: mockUser.username, id: mockUser.id });
+      expect(result).toEqual({
+        access_token: mockAccessToken,
+        refresh_token: mockRefreshToken,
+      });
+      expect(mockJwtService.sign).toHaveBeenCalledWith({
+        username: mockUser.username,
+        id: mockUser.id,
+      });
       expect(mockJwtService.sign).toHaveBeenCalledWith(
         { username: mockUser.username, id: mockUser.id },
         { expiresIn: '7d' },
@@ -158,7 +185,9 @@ describe('AuthService', () => {
       });
 
       // Act and Assert
-      await expect(authService.refreshToken(mockRefreshToken)).rejects.toThrowError('token_not_valid');
+      await expect(
+        authService.refreshToken(mockRefreshToken),
+      ).rejects.toThrowError('token_not_valid');
       expect(mockJwtService.verify).toHaveBeenCalledWith(mockRefreshToken);
     });
 
@@ -169,7 +198,9 @@ describe('AuthService', () => {
       mockJwtService.verify.mockReturnValue(payload);
 
       // Act and Assert
-      await expect(authService.refreshToken(mockRefreshToken)).rejects.toThrowError('Refresh token expired');
+      await expect(
+        authService.refreshToken(mockRefreshToken),
+      ).rejects.toThrowError('Refresh token expired');
       expect(mockJwtService.verify).toHaveBeenCalledWith(mockRefreshToken);
     });
 
@@ -182,7 +213,9 @@ describe('AuthService', () => {
       mockUserService.findOne.mockResolvedValue(null);
 
       // Act and Assert
-      await expect(authService.refreshToken(mockRefreshToken)).rejects.toThrowError('User not found');
+      await expect(
+        authService.refreshToken(mockRefreshToken),
+      ).rejects.toThrowError('User not found');
       expect(mockJwtService.verify).toHaveBeenCalledWith(mockRefreshToken);
       expect(mockUserService.findOne).toHaveBeenCalledWith('id', payload.id);
     });

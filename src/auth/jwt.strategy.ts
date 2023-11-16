@@ -12,13 +12,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: "JWT_SECRET",
-      ignoreExpiration:true
+      secretOrKey: 'JWT_SECRET',
+      ignoreExpiration: true,
     });
   }
 
   async validate(payload: any) {
-    console.log(payload)
+    console.log(payload);
     let user = await this.userService.findOne('id', payload.id);
     if (!user) {
       throw new NotAcceptableException('Invalid Token');

@@ -3,7 +3,7 @@ import { FeaturesService } from './features.service';
 import { Repository } from 'typeorm';
 import { Features } from './features.model';
 import { CreateServiceDTO } from './dto';
-import {getRepositoryToken} from "@nestjs/typeorm";
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('FeaturesService', () => {
   let featuresService: FeaturesService;
@@ -27,7 +27,9 @@ describe('FeaturesService', () => {
     }).compile();
 
     featuresService = module.get<FeaturesService>(FeaturesService);
-    featureModel = module.get<Repository<Features>>(getRepositoryToken(Features));
+    featureModel = module.get<Repository<Features>>(
+      getRepositoryToken(Features),
+    );
   });
 
   describe('createService', () => {
@@ -47,7 +49,9 @@ describe('FeaturesService', () => {
 
       // Assert
       expect(result).toEqual(mockService);
-      expect(mockFeatureRepository.create).toHaveBeenCalledWith(createServiceDTO);
+      expect(mockFeatureRepository.create).toHaveBeenCalledWith(
+        createServiceDTO,
+      );
       expect(mockFeatureRepository.save).toHaveBeenCalledWith(mockService);
     });
   });

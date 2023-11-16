@@ -7,23 +7,23 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { JWTAuthGuard } from './jwt-guard';
 import { AuthController } from './auth.controller';
-import {UserService} from "user/user.service";
-import {TypeOrmModule} from "@nestjs/typeorm";
-import {Mechanic} from "mechanic/mechanic.model";
+import { UserService } from 'user/user.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Mechanic } from 'mechanic/mechanic.model';
 
 @Module({
   imports: [
     UserModule,
     JwtModule.registerAsync({
       useFactory: () => ({
-        secret: "JWT_SECRET",
+        secret: 'JWT_SECRET',
         signOptions: { expiresIn: '1h' },
       }),
     }),
     PassportModule,
-      TypeOrmModule.forFeature([Mechanic])
+    TypeOrmModule.forFeature([Mechanic]),
   ],
-  providers: [AuthService,JwtStrategy, JWTAuthGuard],
+  providers: [AuthService, JwtStrategy, JWTAuthGuard],
   controllers: [AuthController],
   exports: [JWTAuthGuard],
 })

@@ -45,16 +45,28 @@ describe('FeaturesController', () => {
 
       // Mocking the FileInterceptor
       // @ts-ignore
-        jest.spyOn(FileInterceptor, 'intercept').mockReturnValue(() => mockUploadedFile);
+      jest
+        .spyOn(FileInterceptor, 'intercept')
+        .mockReturnValue(() => mockUploadedFile);
 
-      mockFeaturesService.createService.mockResolvedValue({ ...createServiceDTO, image: mockUploadedFile.filename });
+      mockFeaturesService.createService.mockResolvedValue({
+        ...createServiceDTO,
+        image: mockUploadedFile.filename,
+      });
 
       // Act
       // @ts-ignore
-        const result = await featuresController.newService({}, mockUploadedFile, createServiceDTO);
+      const result = await featuresController.newService(
+        {},
+        mockUploadedFile,
+        createServiceDTO,
+      );
 
       // Assert
-      expect(result).toEqual({ ...createServiceDTO, image: mockUploadedFile.filename });
+      expect(result).toEqual({
+        ...createServiceDTO,
+        image: mockUploadedFile.filename,
+      });
       expect(mockFeaturesService.createService).toHaveBeenCalledWith({
         ...createServiceDTO,
         image: mockUploadedFile.filename,
@@ -81,7 +93,13 @@ describe('FeaturesController', () => {
     it('should return an image file', () => {
       // Arrange
       const mockImageFilename = 'test.jpg';
-      const mockFilePath = join(__dirname, '..', '..', 'uploads', mockImageFilename);
+      const mockFilePath = join(
+        __dirname,
+        '..',
+        '..',
+        'uploads',
+        mockImageFilename,
+      );
       const mockResponse = {
         sendFile: jest.fn(),
       } as unknown as Response;

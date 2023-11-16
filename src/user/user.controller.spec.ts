@@ -48,7 +48,9 @@ describe('UserController', () => {
 
     it('should return false if username is already taken', async () => {
       const mockQueryParams = { username: 'existinguser' };
-      userService.findOne = jest.fn().mockResolvedValue({ id: 1, username: 'existinguser' });
+      userService.findOne = jest
+        .fn()
+        .mockResolvedValue({ id: 1, username: 'existinguser' });
 
       const result = await userController.checkUserName(mockQueryParams);
 
@@ -61,7 +63,9 @@ describe('UserController', () => {
       const mockUserId = 1;
       const mockUser = { id: mockUserId };
       const mockRequest = { user: mockUser } as Request;
-      userService.getUserServices = jest.fn().mockResolvedValue(['service1', 'service2']);
+      userService.getUserServices = jest
+        .fn()
+        .mockResolvedValue(['service1', 'service2']);
 
       const result = await userController.getUserServices(mockRequest);
 

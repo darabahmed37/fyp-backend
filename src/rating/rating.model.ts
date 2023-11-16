@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from 'user/user.model';
-import {Mechanic} from "mechanic/mechanic.model";
+import { Mechanic } from 'mechanic/mechanic.model';
 
 @Entity()
 export class Rating {
