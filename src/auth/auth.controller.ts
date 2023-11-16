@@ -53,13 +53,6 @@ export class AuthController {
     @Body('newPassword') newPassword: string,
     @Req() request: Request,
   ) {
-    let user = await this.authService.validateUser(
-      request.user.username,
-      oldPassword,
-    );
-    if (!user) {
-      throw new UnauthorizedException('Invalid Password');
-    }
     return this.authService.updatePassword(request.user.username, newPassword);
   }
 }

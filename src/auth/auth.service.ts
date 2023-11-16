@@ -19,11 +19,6 @@ export class AuthService {
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.findOne('username', username);
     if (!user) return null;
-    let salt = user.password.split('$')[0];
-    let hash = crypto
-      .pbkdf2Sync(pass, salt, 1000, 64, 'sha512')
-      .toString('hex');
-    pass = salt + '$' + hash;
 
     if (user && user.password === pass) {
       const { password, ...result } = user;
@@ -74,6 +69,7 @@ export class AuthService {
       await this.driverRepo.save(mechanic);
     }
   }
+
   updatePassword(username: string, password: string) {
     return this.userService.updatePassword(username, password);
   }
