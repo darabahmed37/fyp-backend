@@ -2,13 +2,15 @@ import {Body, Controller, HttpException, HttpStatus, Post, Req, UnauthorizedExce
 import {AuthService} from 'auth/auth.service';
 import {Public} from 'utils/custom.decorator';
 import {Request} from "express";
+import {JWTAuthGuard} from "auth/jwt-guard";
 
 @Controller('auth')
-@Public()
+
 export class AuthController {
     constructor(private readonly authService: AuthService) {
     }
 
+    @Public()
     @Post('refresh')
     async refreshToken(@Body() body) {
         try {
@@ -18,6 +20,7 @@ export class AuthController {
         }
     }
 
+    @Public()
     @Post('signup')
     async signUp(@Body() body: any) {
         await this.authService.create(body);
@@ -26,6 +29,7 @@ export class AuthController {
         };
     }
 
+    @Public()
     @Post('signin')
     async signIn(@Body() body: any) {
         let user = await this.authService.validateUser(
